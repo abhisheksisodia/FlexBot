@@ -19,14 +19,14 @@ namespace FlexBot
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            if (activity.Type == ActivityTypes.Message)
+            if (activity.Type == ActivityTypes.Message && activity.Text.Contains("@flexbot"))
             {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
                 // calculate something for us to return
                 int length = (activity.Text ?? string.Empty).Length;
 
                 // return our reply to the user
-                Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
+                Activity reply = activity.CreateReply($"Hi, I am FlexBot. I can help you find people based on skill set, knowledge level, location and more!");
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else

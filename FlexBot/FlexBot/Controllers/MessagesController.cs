@@ -32,10 +32,16 @@ namespace FlexBot
                             replyString = "Here is a list of people: Abhishek, Filip, Daniel, Anthony, Camilo";
                             break;
                         case "Intro":
-                            replyString = "I am FlexBot. I can help you find people within your organization based on skill set, knowledge level and more";
+                            replyString = "I can help you find people within your organization based on skill set, knowledge level and more";
                             break;
                         case "None":
                             replyString = "Please ask something meaningful. For instance, you can ask me about to give a list of people who are skilled in a particular technology";
+                            break;
+                        case "Greeting":
+                            replyString = "I am Bot. Who cares how I am doing? More important question is how are you doing?";
+                            break;
+                        case "Welcome":
+                            replyString = "Hi, I am FlexBot. How can I help you today?";
                             break;
                         default:
                             replyString = "Sorry, I am unable to understand...";

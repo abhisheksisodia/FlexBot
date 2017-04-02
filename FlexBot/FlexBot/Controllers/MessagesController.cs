@@ -37,6 +37,10 @@ namespace FlexBot
                             replyString = "I can help you find people within your organization based on skill set, knowledge level and more";
                             await sendReply(activity, replyString);
                             break;
+                        case "Greeting":
+                            replyString = "Hi, I am SkylNet. How can I help you today?";
+                            await sendReply(activity, replyString);
+                            break;
                         default:
                             replyString = "Sorry, I am unable to understand...";
                             await sendReply(activity, replyString);

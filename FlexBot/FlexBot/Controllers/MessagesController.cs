@@ -7,6 +7,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
+using Microsoft.Bot.Builder.Dialogs;
+using FlexBot.Controllers;
 
 namespace FlexBot
 {
@@ -22,48 +24,40 @@ namespace FlexBot
             ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
             if (activity.Type == ActivityTypes.Message)
             {
-                string replyString;
+                string replyString = "-----";
                 LuisResponse StLUIS = await GetEntityFromLUIS(activity.Text);
                 if (StLUIS.intents.Count() > 0)
                 {
                     switch (StLUIS.intents[0].intent)
                     {
-                        case "PeopleList":
-                            replyString = "Here is a list of people: Abhishek, Filip, Daniel, Anthony, Camilo";
+                        case "FindEmployees":
+                            await Conversation.SendAsync(activity, () => new FindEmployeesDialog());
                             break;
                         case "Intro":
                             replyString = "I can help you find people within your organization based on skill set, knowledge level and more";
-                            break;
-                        case "None":
-                            replyString = "Please ask something meaningful. For instance, you can ask me about to give a list of people who are skilled in a particular technology";
-                            break;
-                        case "Greeting":
-                            replyString = "I am Bot. Who cares how I am doing? More important question is how are you doing?";
-                            break;
-                        case "Welcome":
-                            replyString = "Hi, I am FlexBot. How can I help you today?";
+                            await sendReply(activity, replyString);
                             break;
                         default:
                             replyString = "Sorry, I am unable to understand...";
+                            await sendReply(activity, replyString);
                             break;
                     }
                 }
                 else
                 {
-                    replyString = "Sorry, I am not getting you...";
+                    replyString = "Sorry, I am unable to understand...";
+                    await sendReply(activity, replyString);
                 }
-
-                Activity reply = activity.CreateReply(replyString);
-                // return our reply to the user
-                await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else if (activity.Type == ActivityTypes.ConversationUpdate)
             {
-                string replyMessage = string.Empty;
-                replyMessage += $"Hi there\n\n";
-                replyMessage += $"I am FlexBot. Designed to help you find people within your company.  \n";
-                replyMessage += $"I can help you find people based on skill set, knowledge level, location and more!  \n";
-                Activity reply = activity.CreateReply(replyMessage);
+                string introMessage = string.Empty;
+                introMessage += $"Hi there\n\n";
+                introMessage += $"I am SkylNet. I am an employee skills expert.  \n";
+                introMessage += $"I can help you find people based on skills, knowledge level, location and more!  \n";
+                introMessage += $"I can also help you to update employee skills!  \n";
+                introMessage += $"What would you like to do today? Find employees or manage their skills?   \n";
+                Activity reply = activity.CreateReply(introMessage);
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else
@@ -72,6 +66,15 @@ namespace FlexBot
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
+        }
+
+        //temp method to be removed later
+        private async Task sendReply(Activity activity, String replyString)
+        {
+            ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
+            Activity reply = activity.CreateReply(replyString);
+            // return our reply to the user
+            await connector.Conversations.ReplyToActivityAsync(reply);
         }
 
         private Activity HandleSystemMessage(Activity message)

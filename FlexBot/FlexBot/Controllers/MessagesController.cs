@@ -116,7 +116,7 @@ namespace FlexBot
             LuisResponse Data = new LuisResponse();
             using (HttpClient client = new HttpClient())
             {
-                string RequestURI = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/eb1f40b0-c8da-4f20-9264-c8d175117dea?subscription-key=9bee6378df734716b7e2c3f346b30219&timezoneOffset=0.0&verbose=true&q=" + Query;
+                string RequestURI = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/ea3fe896-d375-48ba-9e98-05aefbc94b86?subscription-key=0800c3fb16b54b238266d8473e500b7b&verbose=true&timezoneOffset=0.0&q=" + Query;
                 HttpResponseMessage msg = await client.GetAsync(RequestURI);
 
                 if (msg.IsSuccessStatusCode)

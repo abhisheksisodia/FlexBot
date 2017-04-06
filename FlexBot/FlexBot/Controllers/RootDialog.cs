@@ -18,7 +18,7 @@ namespace FlexBot.Controllers
 
         private const string EntityLocationName = "Location";
 
-        private const string EntityLevelName = "Level";
+        private const string EntityLevelName = "ProficiencyLevel";
 
         protected string skill { get; set; }
         protected string knowledgeLevel { get; set; }
@@ -46,8 +46,6 @@ namespace FlexBot.Controllers
         [LuisIntent("FindEmployees")]
         public async Task FindEmployees(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync($"Okay, let me take a look...");
-
             var entities = new List<EntityRecommendation>(result.Entities);
 
             foreach (var entity in entities)
@@ -71,30 +69,54 @@ namespace FlexBot.Controllers
             if (skill != null && location != null && knowledgeLevel != null)
             {
                 await SearchEmployees(context);
-            }
-            else if (skill != null && location == null && knowledgeLevel == null)
-            {
-                await context.PostAsync($"Okay, what knowledge level are you interested in?");
-                context.Wait(MessageReceivedLevelAskForLocation); // State transition: wait for user to provide skill
-            }
-            else if (location != null && skill == null && knowledgeLevel == null)
-            {
-                await context.PostAsync($"Okay, which skill are you interested in?");
-                context.Wait(MessageReceivedSkillAskForLevel); // State transition: wait for user to provide skill
+                context.Done<object>(new object());
             }
             else if (skill != null && location != null && knowledgeLevel == null)
             {
-                await context.PostAsync($"Okay, what knowledge level are you interested in?");
-                context.Wait(MessageReceivedKnowledgeLevel);
+                await context.PostAsync($"Okay, are you interested in any knowledge level?");
+                context.Done<object>(new object());
+                // display list of levels using formflow maybe plus none then wait user feedback
+                // get user selection and update knowledge level
+                // query with selected criteria
             }
             else if (skill != null && knowledgeLevel != null && location == null)
             {
-                await context.PostAsync($"Okay, what location are you interested in?");
-                context.Wait(MessageReceivedLocation);
+                await context.PostAsync($"Okay, are you interested in any location?");
+                context.Done<object>(new object());
+                // include luis
+                // query with selected criteria
+            }
+            else if (location != null && knowledgeLevel != null && skill == null)
+            {
+                await context.PostAsync($"Okay, which skill are you interested in?");
+                context.Done<object>(new object());
+                // include luis
+                // query with selected criteria
             }
             else
             {
-                await context.PostAsync($"Sorry, I am unable to understand. Try asking me: 'Find me people who know Java' ");
+                if (skill == null)
+                {
+                    await context.PostAsync($"Okay, are you interested in any skill?");
+                    context.Done<object>(new object());
+                }
+                else if (knowledgeLevel == null)
+                {
+                    await context.PostAsync($"Okay, are you interested in any knowledge level?");
+                    context.Done<object>(new object());
+                }
+                else if (location == null)
+                {
+                    await context.PostAsync($"Okay, are you interested in any location?");
+                    context.Done<object>(new object());
+                }
+                else
+                {
+                    await context.PostAsync($"Sorry, I did not understand. Try asking me: 'Find me people who know Java'");
+                    skill = null;
+                    location = null;
+                    knowledgeLevel = null;
+                }
             }
 
         }
@@ -103,34 +125,7 @@ namespace FlexBot.Controllers
         {
             await context.PostAsync($"Okay, looking for people who know {skill} with knowledge level {knowledgeLevel} and located in {location}");
             //perform search and give results
-        }
-
-        public async Task MessageReceivedSkillAskForLevel(IDialogContext context, IAwaitable<IMessageActivity> argument)
-        {
-            this.skill = (await argument).Text;
-            await context.PostAsync("What knowledge level are you interested in?");
-            context.Wait(MessageReceivedKnowledgeLevel); // State transition: wait for user to provide knowledge level
-        }
-
-        public async Task MessageReceivedLevelAskForLocation(IDialogContext context, IAwaitable<IMessageActivity> argument)
-        {
-            this.knowledgeLevel = (await argument).Text;
-            await context.PostAsync("Which location are you interested in?");
-            context.Wait(MessageReceivedLocation); // State transition: wait for user to provide cover location
-        }
-
-        public async Task MessageReceivedLocation(IDialogContext context, IAwaitable<IMessageActivity> argument)
-        {
-            this.location = (await argument).Text;
-            // do your search/aggregation here
-            await SearchEmployees(context);
-        }
-
-        public async Task MessageReceivedKnowledgeLevel(IDialogContext context, IAwaitable<IMessageActivity> argument)
-        {
-            this.knowledgeLevel = (await argument).Text;
-            // do your search/aggregation here
-            await SearchEmployees(context);
+            context.Done<object>(new object());
         }
     }
 }

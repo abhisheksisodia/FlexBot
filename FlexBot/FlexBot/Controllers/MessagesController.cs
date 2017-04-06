@@ -24,46 +24,19 @@ namespace FlexBot
             ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
             if (activity.Type == ActivityTypes.Message)
             {
-                string replyString = "-----";
-                LuisResponse StLUIS = await GetEntityFromLUIS(activity.Text);
-                if (StLUIS.intents.Count() > 0)
-                {
-                    switch (StLUIS.intents[0].intent)
-                    {
-                        case "FindEmployees":
-                            await Conversation.SendAsync(activity, () => new FindEmployeesDialog());
-                            break;
-                        case "Intro":
-                            replyString = "I can help you find people within your organization based on skill set, knowledge level and more";
-                            await sendReply(activity, replyString);
-                            break;
-                        case "Greeting":
-                            replyString = "Hi, I am SkylNet. How can I help you today?";
-                            await sendReply(activity, replyString);
-                            break;
-                        default:
-                            replyString = "Sorry, I am unable to understand...";
-                            await sendReply(activity, replyString);
-                            break;
-                    }
-                }
-                else
-                {
-                    replyString = "Sorry, I am unable to understand...";
-                    await sendReply(activity, replyString);
-                }
+                await Conversation.SendAsync(activity, () => new RootDialog());
             }
-            else if (activity.Type == ActivityTypes.ConversationUpdate)
-            {
-                string introMessage = string.Empty;
-                introMessage += $"Hi there\n\n";
-                introMessage += $"I am SkylNet. I am an employee skills expert.  \n";
-                introMessage += $"I can help you find people based on skills, knowledge level, location and more!  \n";
-                introMessage += $"I can also help you to update employee skills!  \n";
-                introMessage += $"What would you like to do today? Find employees or manage their skills?   \n";
-                Activity reply = activity.CreateReply(introMessage);
-                await connector.Conversations.ReplyToActivityAsync(reply);
-            }
+            //else if (activity.Type == ActivityTypes.ConversationUpdate)
+            //{
+            //    string introMessage = string.Empty;
+            //    introMessage += $"Hi there\n\n";
+            //    introMessage += $"I am SkylNet. I am an employee skills expert.  \n";
+            //    introMessage += $"I can help you find people based on skills, knowledge level, location and more!  \n";
+            //    introMessage += $"I can also help you to update employee skills!  \n";
+            //    introMessage += $"What would you like to do today? Find employees or manage their skills?   \n";
+            //    Activity reply = activity.CreateReply(introMessage);
+            //    await connector.Conversations.ReplyToActivityAsync(reply);
+            //}
             else
             {
                 HandleSystemMessage(activity);

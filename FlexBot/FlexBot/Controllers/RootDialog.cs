@@ -69,7 +69,6 @@ namespace FlexBot.Controllers
             if (skill != null && location != null && knowledgeLevel != null)
             {
                 await SearchEmployees(context);
-                context.Done<object>(new object());
             }
             else if (skill != null && location != null && knowledgeLevel == null)
             {
@@ -119,6 +118,73 @@ namespace FlexBot.Controllers
                 }
             }
 
+        }
+
+        [LuisIntent("ChangeRequest")]
+        public async Task ChangeRequest(IDialogContext context, LuisResult result)
+        {
+            skill = null;
+            location = null;
+            knowledgeLevel = null;
+            await context.PostAsync($"All right what do you want me to do now?");
+            context.Done<object>(new object());
+        }
+
+        [LuisIntent("ChangeLocation")]
+        public async Task ChangeLocation(IDialogContext context, LuisResult result)
+        {
+            location = null;
+            var entities = new List<EntityRecommendation>(result.Entities);
+            foreach (var entity in entities)
+            {
+                if (entity.Type.Equals(EntityLocationName))
+                {
+                    location = entity.Entity;
+                    await SearchEmployees(context);
+                    return;
+                }
+            }
+
+            await context.PostAsync($"OK, what is the new location?");
+            context.Done<object>(new object());
+        }
+
+        [LuisIntent("ChangeSkill")]
+        public async Task ChangeSkill(IDialogContext context, LuisResult result)
+        {
+            skill = null;
+            var entities = new List<EntityRecommendation>(result.Entities);
+            foreach (var entity in entities)
+            {
+                if (entity.Type.Equals(EntitySkillName))
+                {
+                    skill = entity.Entity;
+                    await SearchEmployees(context);
+                    return;
+                }
+            }
+
+            await context.PostAsync($"OK, what is the new skill?");
+            context.Done<object>(new object());
+        }
+
+        [LuisIntent("ChangeKnowledgeLevel")]
+        public async Task ChangeKnowledgeLevel(IDialogContext context, LuisResult result)
+        {
+            knowledgeLevel = null;
+            var entities = new List<EntityRecommendation>(result.Entities);
+            foreach (var entity in entities)
+            {
+                if (entity.Type.Equals(EntityLevelName))
+                {
+                    knowledgeLevel = entity.Entity;
+                    await SearchEmployees(context);
+                    return;
+                }
+            }
+
+            await context.PostAsync($"OK, what is the new location?");
+            context.Done<object>(new object());
         }
 
         public async Task SearchEmployees(IDialogContext context)

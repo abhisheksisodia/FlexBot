@@ -26,17 +26,17 @@ namespace FlexBot
             {
                 await Conversation.SendAsync(activity, () => new RootDialog());
             }
-            //else if (activity.Type == ActivityTypes.ConversationUpdate)
-            //{
-            //    string introMessage = string.Empty;
-            //    introMessage += $"Hi there\n\n";
-            //    introMessage += $"I am SkylNet. I am an employee skills expert.  \n";
-            //    introMessage += $"I can help you find people based on skills, knowledge level, location and more!  \n";
-            //    introMessage += $"I can also help you to update employee skills!  \n";
-            //    introMessage += $"What would you like to do today? Find employees or manage their skills?   \n";
-            //    Activity reply = activity.CreateReply(introMessage);
-            //    await connector.Conversations.ReplyToActivityAsync(reply);
-            //}
+            else if (activity.Type == ActivityTypes.ConversationUpdate)
+            {
+                string introMessage = string.Empty;
+                introMessage += $"Hi there\n\n";
+                introMessage += $"I am SkylNet. I am an employee skills expert.  \n";
+                introMessage += $"I can help you find people based on skills, knowledge level, location and more!  \n";
+                introMessage += $"I can also help you to update employee skills!  \n";
+                introMessage += $"What would you like to do today? Find employees or manage their skills?   \n";
+                Activity reply = activity.CreateReply(introMessage);
+                await connector.Conversations.ReplyToActivityAsync(reply);
+            }
             else
             {
                 HandleSystemMessage(activity);

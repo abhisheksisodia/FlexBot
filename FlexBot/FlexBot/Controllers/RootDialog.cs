@@ -1,4 +1,5 @@
-﻿using Microsoft.Bot.Builder.Dialogs;
+﻿using FlexBot.Cards;
+using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
@@ -43,6 +44,17 @@ namespace FlexBot.Controllers
             context.Wait(this.MessageReceived);
         }
 
+        [LuisIntent("Help")]
+        public async Task Help(IDialogContext context, LuisResult result)
+        {
+            string message = $"To find people try asking me: Find me people who are expert in java and are located in Toronto \n\n";
+            message += $"You can also just provide me with one search criteria \n\n";
+            message += $"I can also help you with updating skills of people. Try asking me: Update skills for Anthony \n\n";
+
+            await context.PostAsync(message);
+            context.Wait(this.MessageReceived);
+        }
+
         [LuisIntent("FindEmployees")]
         public async Task FindEmployees(IDialogContext context, LuisResult result)
         {
@@ -72,11 +84,8 @@ namespace FlexBot.Controllers
             }
             else if (skill != null && location != null && knowledgeLevel == null)
             {
-                await context.PostAsync($"Okay, are you interested in any knowledge level?");
-                context.Done<object>(new object());
-                // display list of levels using formflow maybe plus none then wait user feedback
-                // get user selection and update knowledge level
-                // query with selected criteria
+                ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
+                await proficiencySelectorCard.ShowOptions(context);
             }
             else if (skill != null && knowledgeLevel != null && location == null)
             {
@@ -101,8 +110,8 @@ namespace FlexBot.Controllers
                 }
                 else if (knowledgeLevel == null)
                 {
-                    await context.PostAsync($"Okay, are you interested in any knowledge level?");
-                    context.Done<object>(new object());
+                    ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
+                    await proficiencySelectorCard.ShowOptions(context);
                 }
                 else if (location == null)
                 {

@@ -1,3 +1,6 @@
+C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\FlexBot.dll.config
+C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\FlexBot.dll
+C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\FlexBot.pdb
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Autofac.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Chronic.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.dll
@@ -31,9 +34,5 @@ C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\fr\Microsoft.
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\ja\Microsoft.Bot.Builder.resources.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\ru\Microsoft.Bot.Builder.resources.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
-C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.csprojResolveAssemblyReference.cache
-C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\FlexBot.dll.config
-C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\FlexBot.dll
-C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\FlexBot.pdb
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.pdb

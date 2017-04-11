@@ -27,7 +27,80 @@ namespace FlexBot.Controllers
         [LuisIntent("Greeting")]
         public async Task Greeting(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync($"Hi, I am Skylnet. I am an employee skills expert. Try asking me: 'Find me people who know Java' or 'Update skills of Anthony'");
+            // Yes or No
+            //IMessageActivity replyToConversation = context.MakeMessage();
+            //replyToConversation.Text = "Please pick a choice";
+            //replyToConversation.Type = "message";
+            //replyToConversation.Attachments = new List<Attachment>();
+            //List<CardImage> cardImages = new List<CardImage>();
+            ////cardImages.Add(new CardImage(url: "https://pbs.twimg.com/profile_images/791067045991358464/yy_F__YU.jpg"));
+            ////cardImages.Add(new CardImage(url: "https://pbs.twimg.com/profile_images/791067045991358464/yy_F__YU.jpg"));
+            //List<CardAction> cardButtons = new List<CardAction>();
+            //CardAction yesButton = new CardAction()
+            //{
+            //    Value = "Yes",
+            //    Type = "postBack",
+            //    Title = "Yes"
+            //};
+            //CardAction noButton = new CardAction()
+            //{
+            //    Value = "No",
+            //    Type = "postBack",
+            //    Title = "No"
+            //};
+            //cardButtons.Add(yesButton);
+            //cardButtons.Add(noButton);
+
+            //HeroCard plCard = new HeroCard()
+            //{
+            //    Title = "Yes or No?",
+            //    Subtitle = "Please select one",
+            //    Images = cardImages,
+            //    Buttons = cardButtons
+            //};
+            //Attachment plAttachment = plCard.ToAttachment();
+            //replyToConversation.Attachments.Add(plAttachment);
+            //await context.PostAsync(replyToConversation);
+
+
+
+
+            // Location based (Uncomment to try and comment above)
+            IMessageActivity replyToConversation = context.MakeMessage();
+            replyToConversation.Text = "Please pick a choice";
+            replyToConversation.Type = "message";
+            replyToConversation.Attachments = new List<Attachment>();
+            List<CardImage> cardImages = new List<CardImage>();
+            cardImages.Add(new CardImage(url: "http://www.seetorontonow.com/wp-content/uploads/2017/01/toronto-skyline-with-fireworks.jpg"));
+            List<CardAction> cardButtons = new List<CardAction>();
+            CardAction torontoButton = new CardAction()
+            {
+                Value = "Toronto",
+                Type = "postBack",
+                Title = "Toronto"
+            };
+            CardAction krakowButton = new CardAction()
+            {
+                Value = "Krakow",
+                Type = "postBack",
+                Title = "Krakow"
+            };
+            cardButtons.Add(torontoButton);
+            cardButtons.Add(krakowButton);
+
+            HeroCard plCard = new HeroCard()
+            {
+                Title = "Pick Location",
+                Subtitle = "Select as many as you like",
+                Images = cardImages,
+                Buttons = cardButtons
+            };
+            Attachment plAttachment = plCard.ToAttachment();
+
+            replyToConversation.Attachments.Add(plAttachment);
+            await context.PostAsync(replyToConversation);
+
+            //await context.PostAsync($"Hi, I am Skylnet. I am an employee skills expert. Try asking me: 'Find me people who know Java' or 'Update skills of Anthony'");
 
             context.Wait(this.MessageReceived);
         }

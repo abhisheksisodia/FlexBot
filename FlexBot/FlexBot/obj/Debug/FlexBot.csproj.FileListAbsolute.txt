@@ -75,3 +75,7 @@ C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\zh-hans\Microsoft.Bot.
 C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.dll
 C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.pdb
 C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.csprojResolveAssemblyReference.cache
+C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\EntityFramework.dll
+C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\EntityFramework.SqlServer.dll
+C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\EntityFramework.xml
+C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\EntityFramework.SqlServer.xml

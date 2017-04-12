@@ -1,3 +1,4 @@
 FlexBot/FlexBot/obj/*
 FlexBot/FlexBot/bin/*
 FlexBot/.vs/*
+/FlexBot/packages/EntityFramework.6.1.3

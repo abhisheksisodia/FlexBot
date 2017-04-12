@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
+using System;
 
 namespace FlexBot.DbHelper
 {
@@ -9,17 +10,18 @@ namespace FlexBot.DbHelper
         //private SqlConnection connection;
         private string connectionString;
         public DatabaseHelper() {
-            //string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\baptid3\\Source\\Repos\\FlexBot\\FlexBot\\FlexBot\\App_Data\\SkillsDatabase.mdf;Integrated Security=True";
+            //connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\baptid3\\Source\\Repos\\FlexBot\\FlexBot\\FlexBot\\App_Data\\SkillsDatabase.mdf;Integrated Security=True";
             connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["connectionStringName"].ConnectionString;
-
-            //connection = new SqlConnection(connectionString);
         }
 
         public List<UserSkillsView> GetUserByLocationAndSkill(string location, string skills) {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
+                SqlConnection connection = new SqlConnection(connectionString);
                 SqlCommand command = new SqlCommand();
                 SqlDataReader dataReader;
+
+                command.CommandText = "dbo.GetUsersBySkillAndLocation";
 
                 SqlParameter skillParam = new SqlParameter();
                 skillParam.ParameterName = "@skill";
@@ -41,23 +43,29 @@ namespace FlexBot.DbHelper
                 // Parse dateReader
                 while (dataReader.Read())
                 {
-
                     result.Add(readRow(dataReader));
                 }
 
-                //dataReader.Close();
-                //connection.Close();
+                dataReader.Close();
+                connection.Close();
 
                 return result;
             }
+            catch (Exception ex) {
+                string message = ex.Message;
+            }
+
+            return null;
         }
 
         public List<UserSkillsView> GetUserByLocationAndProficiency(string location, string proficiency) {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
+                SqlConnection connection = new SqlConnection(connectionString);
                 SqlCommand command = new SqlCommand();
                 SqlDataReader dataReader;
 
+                command.CommandText = "dbo.GetUsersByLocationAndProficiency";
                 SqlParameter proficiencyParam = new SqlParameter();
                 proficiencyParam.ParameterName = "@proficiency";
                 proficiencyParam.Value = proficiency;
@@ -81,20 +89,27 @@ namespace FlexBot.DbHelper
                     result.Add(readRow(dataReader));
                 }
 
-                //dataReader.Close();
-                //connection.Close();
+                dataReader.Close();
+                connection.Close();
 
                 return result;
             }
+            catch (Exception ex) {
+                String message = ex.Message;
+            }
+
+            return null;
         }
 
         public List<UserSkillsView> GetUserBySkillAndProficiency(string skill, string proficiency)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
+                SqlConnection connection = new SqlConnection(connectionString);
                 SqlCommand command = new SqlCommand();
                 SqlDataReader dataReader;
 
+                command.CommandText = "dbo.GetUsersBySkillAndProficiency";
                 SqlParameter proficiencyParam = new SqlParameter();
                 proficiencyParam.ParameterName = "@proficiency";
                 proficiencyParam.Value = proficiency;
@@ -118,17 +133,58 @@ namespace FlexBot.DbHelper
                     result.Add(readRow(dataReader));
                 }
 
-                //dataReader.Close();
-                //connection.Close();
+                dataReader.Close();
+                connection.Close();
 
                 return result;
             }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+
+            return null;
+        }
+
+        public List<UserSkillsView> GetAllUsers()
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                SqlCommand command = new SqlCommand();
+                SqlDataReader dataReader;
+
+                command.CommandText = "dbo.ShowAllUsers";
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Connection = connection;
+                List<UserSkillsView> result = new List<UserSkillsView>();
+
+                connection.Open();
+                dataReader = command.ExecuteReader();
+
+                // Parse dateReader
+                while (dataReader.Read()) {
+                    result.Add(readRow(dataReader));
+                }
+
+                dataReader.Close();
+                connection.Close();
+
+                return result;
+            }
+            catch (Exception ex) {
+                string message = ex.Message;
+            }
+
+            return null;
         }
 
         public List<UserSkillsView> GetUserBySkillProficiencyAndLocation(string skill, string proficiency, string location)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
+                SqlConnection connection = new SqlConnection(connectionString);
                 SqlCommand command = new SqlCommand();
                 SqlDataReader dataReader;
 
@@ -162,14 +218,16 @@ namespace FlexBot.DbHelper
                     result.Add(readRow(dataReader));
                 }
 
+                dataReader.Close();
+                connection.Close();
+
                 return result;
             }
-                
+            catch (Exception ex) {
+                string message = ex.Message;
+            }
 
-            //dataReader.Close();
-            //connection.Close();
-
-            
+            return null; 
         }
 
 

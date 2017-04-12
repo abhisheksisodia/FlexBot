@@ -1,4 +1,5 @@
 ﻿using FlexBot.Cards;
+using FlexBot.DbHelper;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
@@ -200,6 +201,21 @@ namespace FlexBot.Controllers
         {
             await context.PostAsync($"Okay, looking for people who know {skill} with knowledge level {knowledgeLevel} and located in {location}");
             //perform search and give results
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            if (skill != null && knowledgeLevel != null && location != null)
+            {
+                List<UserSkillsView> results = dbHelper.GetUserByLocationAndSkill("Toronto", "Swift");
+                // List<UserSkillsView> results = dbHelper.GetAllUsers();
+                foreach (var user in results)
+                {
+                    await context.PostAsync($"{user.FirstName}, {user.Email}");
+                }
+
+                if (results.Count == 0) {
+                    await context.PostAsync("Sorry, I wasn't able to find what you were looking for.");
+                }
+            }
+
             context.Done<object>(new object());
         }
     }

@@ -17,6 +17,8 @@ namespace FlexBot.Slack
 
     public class SlackAttachment
     {
+        [JsonProperty("attachment_type")]
+        public string AttachmentType { get; set; }
         [JsonProperty("fallback")]
         public string Fallback { get; set; }
         [JsonProperty("color")]

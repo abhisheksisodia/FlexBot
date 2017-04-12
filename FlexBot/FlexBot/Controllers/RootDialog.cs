@@ -112,7 +112,7 @@ namespace FlexBot.Controllers
                 }
                 else if (knowledgeLevel == null)
                 {
-                    SendSlackButtons(context);
+                    await SendSlackButtons(context);
 //                    ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
 //                    await proficiencySelectorCard.ShowOptions(context);
                 }
@@ -136,6 +136,7 @@ namespace FlexBot.Controllers
         {
             var slackAttachment = new SlackAttachment();
             slackAttachment.Text = "Select knowledge level:";
+            slackAttachment.AttachmentType = "default";
             slackAttachment.Actions = new List<SlackAction>();
             var slackAction = new SlackAction();
             slackAction.Type = "button";

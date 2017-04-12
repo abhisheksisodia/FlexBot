@@ -229,8 +229,7 @@ namespace FlexBot.Controllers
             DatabaseHelper dbHelper = new DatabaseHelper();
             if (skill != null && knowledgeLevel != null && location != null)
             {
-                List<UserSkillsView> results = dbHelper.GetUserByLocationAndSkill("Toronto", "Swift");
-                // List<UserSkillsView> results = dbHelper.GetAllUsers();
+                List<UserSkillsView> results = dbHelper.GetUserBySkillProficiencyAndLocation(skill, knowledgeLevel, location);
                 foreach (var user in results)
                 {
                     await context.PostAsync($"{user.FirstName}, {user.Email}");

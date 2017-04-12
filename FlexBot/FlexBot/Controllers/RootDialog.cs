@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using FlexBot.Slack;
 
 namespace FlexBot.Controllers
 {
@@ -85,6 +86,7 @@ namespace FlexBot.Controllers
             }
             else if (skill != null && location != null && knowledgeLevel == null)
             {
+                //await SendSlackButtons(context);
                 ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
                 await proficiencySelectorCard.ShowOptions(context);
             }
@@ -111,6 +113,7 @@ namespace FlexBot.Controllers
                 }
                 else if (knowledgeLevel == null)
                 {
+                    //await SendSlackButtons(context);
                     ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
                     await proficiencySelectorCard.ShowOptions(context);
                 }
@@ -128,6 +131,28 @@ namespace FlexBot.Controllers
                 }
             }
 
+        }
+
+        private static async Task SendSlackButtons(IDialogContext context)
+        {
+            var slackAttachment = new SlackAttachment();
+            slackAttachment.Text = "Select knowledge level:";
+            slackAttachment.AttachmentType = "default";
+            slackAttachment.Actions = new List<SlackAction>();
+            var slackAction = new SlackAction();
+            slackAction.Type = "button";
+            slackAction.Name = "knowledgeLevel";
+            slackAction.Text = "Expert";
+            slackAction.Value = "Expert";
+            slackAttachment.Actions.Add(slackAction);
+
+            var reply = context.MakeMessage();
+            var slackChannelData = new SlackChannelData();
+            slackChannelData.Attachment = new List<SlackAttachment>();
+            slackChannelData.Attachment.Add(slackAttachment);
+            reply.ChannelData = slackChannelData;
+
+            await context.PostAsync(reply);
         }
 
         [LuisIntent("ChangeRequest")]

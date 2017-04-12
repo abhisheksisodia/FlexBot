@@ -85,9 +85,9 @@ namespace FlexBot.Controllers
             }
             else if (skill != null && location != null && knowledgeLevel == null)
             {
-                await SendSlackButtons(context);
-//                ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
-//                await proficiencySelectorCard.ShowOptions(context);
+                //await SendSlackButtons(context);
+                ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
+                await proficiencySelectorCard.ShowOptions(context);
             }
             else if (skill != null && knowledgeLevel != null && location == null)
             {
@@ -112,9 +112,9 @@ namespace FlexBot.Controllers
                 }
                 else if (knowledgeLevel == null)
                 {
-                    await SendSlackButtons(context);
-//                    ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
-//                    await proficiencySelectorCard.ShowOptions(context);
+                    //await SendSlackButtons(context);
+                    ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
+                    await proficiencySelectorCard.ShowOptions(context);
                 }
                 else if (location == null)
                 {

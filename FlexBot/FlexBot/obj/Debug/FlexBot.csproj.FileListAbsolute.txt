@@ -79,3 +79,46 @@ C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\EntityFramework.dll
 C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\EntityFramework.SqlServer.dll
 C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\EntityFramework.xml
 C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\EntityFramework.SqlServer.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\FlexBot.dll.config
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\FlexBot.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\FlexBot.pdb
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Autofac.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Chronic.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\EntityFramework.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\EntityFramework.SqlServer.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Connector.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.Rest.ClientRuntime.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.WindowsAzure.Configuration.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Newtonsoft.Json.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\System.Net.Http.Formatting.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\System.Web.Http.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\System.Web.Http.WebHost.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Autofac.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\EntityFramework.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\EntityFramework.SqlServer.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Connector.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.IdentityModel.Protocol.Extensions.pdb
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.Rest.ClientRuntime.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Microsoft.WindowsAzure.Configuration.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\Newtonsoft.Json.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\System.IdentityModel.Tokens.Jwt.pdb
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\System.IdentityModel.Tokens.Jwt.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\System.Net.Http.Formatting.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\System.Web.Http.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\System.Web.Http.WebHost.xml
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\ar\Microsoft.Bot.Builder.resources.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\en\Microsoft.Bot.Builder.resources.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\es\Microsoft.Bot.Builder.resources.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\fa\Microsoft.Bot.Builder.resources.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\fr\Microsoft.Bot.Builder.resources.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\ja\Microsoft.Bot.Builder.resources.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\ru\Microsoft.Bot.Builder.resources.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.csprojResolveAssemblyReference.cache
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.dll
+D:\c# projects\flex\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.pdb

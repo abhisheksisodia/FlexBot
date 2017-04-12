@@ -18,35 +18,35 @@ namespace FlexBot.Slack
     public class SlackAttachment
     {
         [JsonProperty("fallback")]
-        public String Fallback { get; set; }
+        public string Fallback { get; set; }
         [JsonProperty("color")]
-        public String Color { get; set; }
+        public string Color { get; set; }
         [JsonProperty("pretext")]
-        public String Pretext { get; set; }
+        public string Pretext { get; set; }
         [JsonProperty("author_name")]
-        public String AuthorName { get; set; }
+        public string AuthorName { get; set; }
         [JsonProperty("author_link")]
-        public String AuthorLink { get; set; }
+        public string AuthorLink { get; set; }
         [JsonProperty("author_icon")]
-        public String AuthorIcon { get; set; }
+        public string AuthorIcon { get; set; }
         [JsonProperty("title")]
-        public String Title { get; set; }
+        public string Title { get; set; }
         [JsonProperty("title_link")]
-        public String TitleLink { get; set; }
+        public string TitleLink { get; set; }
         [JsonProperty("text")]
-        public String Text { get; set; }
+        public string Text { get; set; }
         [JsonProperty("fields")]
         public List<SlackField> Fields { get; set; }
         [JsonProperty("image_url")]
-        public String ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
         [JsonProperty("thumb_url")]
-        public String ThumbUrl { get; set; }
+        public string ThumbUrl { get; set; }
         [JsonProperty("footer")]
-        public String Footer { get; set; }
+        public string Footer { get; set; }
         [JsonProperty("footer_icon")]
-        public String FooterIcon { get; set; }
+        public string FooterIcon { get; set; }
         [JsonProperty("ts")]
-        public String Ts { get; set; }
+        public string Ts { get; set; }
         [JsonProperty("actions")]
         public List<SlackAction> Actions { get; set; }
     }
@@ -54,9 +54,9 @@ namespace FlexBot.Slack
     public class SlackField
     {
         [JsonProperty("title")]
-        public String Title { get; set; }
+        public string Title { get; set; }
         [JsonProperty("value")]
-        public String Value { get; set; }
+        public string Value { get; set; }
         [JsonProperty("short")]
         public bool Short { get; set; }
     }
@@ -65,11 +65,11 @@ namespace FlexBot.Slack
     {
 
         [JsonProperty("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
         [JsonProperty("text")]
-        public String Text { get; set; }
+        public string Text { get; set; }
         [JsonProperty("type")]
-        public String Type { get; set; }
+        public string Type { get; set; }
         [JsonProperty("value")]
         public string Value { get; set; }
     }

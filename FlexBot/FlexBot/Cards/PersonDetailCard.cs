@@ -29,9 +29,9 @@ namespace FlexBot.Cards
             {
                 Title = $"{user.FirstName}, {user.LastName}",
                 Subtitle = $"Consultant, Located in {user.Location}",
-                Text = $"Java, C#, Swift, Hololens, Android, iOS \n\n  Email: {user.Email}",
+                Text = $"Skills: Java, C#, Swift, Hololens, Android, iOS \n\n Email: {user.Email}",
                 Images = new List<CardImage> { new CardImage("http://vignette2.wikia.nocookie.net/jamesbond/images/d/dc/James_Bond_%28Pierce_Brosnan%29_-_Profile.jpg/revision/latest?cb=20130506224906") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Contact", value: "https://docs.botframework.com/en-us/") }
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Contact", value: "slack://user?team={infusion}&id={asisodia}") }
             };
 
             return heroCard.ToAttachment();

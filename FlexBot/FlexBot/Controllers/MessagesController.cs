@@ -9,6 +9,9 @@ using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
 using Microsoft.Bot.Builder.Dialogs;
 using FlexBot.Controllers;
+using FlexBot.Models;
+using Microsoft.Bot.Builder.FormFlow;
+using System.Diagnostics;
 
 namespace FlexBot
 {
@@ -21,29 +24,46 @@ namespace FlexBot
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-            if (activity.Type == ActivityTypes.Message)
+            if (activity != null)
             {
-                await Conversation.SendAsync(activity, () => new RootDialog());
+                // one of these will have an interface and process it
+                switch (activity.GetActivityType())
+                {
+                    case ActivityTypes.Message:
+                        {
+                            await Conversation.SendAsync(activity, MakeRoot);
+                            break;
+                        }
+                    case ActivityTypes.ConversationUpdate:
+                    case ActivityTypes.ContactRelationUpdate:
+                    case ActivityTypes.Typing:
+                    case ActivityTypes.DeleteUserData:
+                    default:
+                        Trace.TraceError($"Activity Error: {activity.GetActivityType()}");
+                        break;
+                }
             }
-            else if (activity.Type == ActivityTypes.ConversationUpdate)
-            {
-                string introMessage = string.Empty;
-                introMessage += $"Hi there\n\n";
-                introMessage += $"I am SkylNet. I am an employee skills expert.  \n";
-                introMessage += $"I can help you find people based on skills, knowledge level, location and more!  \n";
-                introMessage += $"I can also help you to update employee skills!  \n";
-                introMessage += $"What would you like to do today? Find employees or manage their skills?   \n";
-                Activity reply = activity.CreateReply(introMessage);
-                await connector.Conversations.ReplyToActivityAsync(reply);
-            }
-            else
-            {
-                HandleSystemMessage(activity);
-            }
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            return response;
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+        private static IForm<FindEmployeeModel> BuildFindEmployeeForm()
+        {
+            var builder = new FormBuilder<FindEmployeeModel>();
+
+            return builder
+                .Field(nameof(FindEmployeeModel.skill))
+                .Field(nameof(FindEmployeeModel.skillLevel))
+                .Field(nameof(FindEmployeeModel.location))
+                .AddRemainingFields()
+                .Build();
+        }
+
+        internal static IDialog<FindEmployeeModel> MakeRoot()
+        {
+            return Chain.From(() => new RootDialog(BuildFindEmployeeForm));
+        }
+
 
         //temp method to be removed later
         private async Task sendReply(Activity activity, String replyString)
@@ -52,35 +72,6 @@ namespace FlexBot
             Activity reply = activity.CreateReply(replyString);
             // return our reply to the user
             await connector.Conversations.ReplyToActivityAsync(reply);
-        }
-
-        private Activity HandleSystemMessage(Activity message)
-        {
-            if (message.Type == ActivityTypes.DeleteUserData)
-            {
-                // Implement user deletion here
-                // If we handle user deletion, return a real message
-            }
-            else if (message.Type == ActivityTypes.ConversationUpdate)
-            {
-                // Handle conversation state changes, like members being added and removed
-                // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
-                // Not available in all channels
-            }
-            else if (message.Type == ActivityTypes.ContactRelationUpdate)
-            {
-                // Handle add/remove from contact lists
-                // Activity.From + Activity.Action represent what happened
-            }
-            else if (message.Type == ActivityTypes.Typing)
-            {
-                // Handle knowing tha the user is typing
-            }
-            else if (message.Type == ActivityTypes.Ping)
-            {
-            }
-
-            return null;
         }
 
         private static async Task<LuisResponse> GetEntityFromLUIS(string Query)

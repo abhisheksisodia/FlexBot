@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using FlexBot.Slack;
 
 namespace FlexBot.Controllers
 {
@@ -84,8 +85,25 @@ namespace FlexBot.Controllers
             }
             else if (skill != null && location != null && knowledgeLevel == null)
             {
-                ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
-                await proficiencySelectorCard.ShowOptions(context);
+                var slackAttachment = new SlackAttachment();
+                slackAttachment.Text = "Select knowledge level:";
+                slackAttachment.Actions = new List<SlackAction>();
+                var slackAction = new SlackAction();
+                slackAction.Type = "button";
+                slackAction.Name = "knowledgeLevel";
+                slackAction.Text = "Expert";
+                slackAction.Value = "Expert";
+                slackAttachment.Actions.Add(slackAction);
+
+                var reply = context.MakeMessage();
+                var slackChannelData = new SlackChannelData();
+                slackChannelData.Attachment = new List<SlackAttachment>();
+                slackChannelData.Attachment.Add(slackAttachment);
+                reply.ChannelData = slackChannelData;
+
+                await context.PostAsync(reply);
+//                ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
+//                await proficiencySelectorCard.ShowOptions(context);
             }
             else if (skill != null && knowledgeLevel != null && location == null)
             {

@@ -57,6 +57,21 @@ namespace FlexBot.Controllers
             context.Wait(this.MessageReceived);
         }
 
+        [LuisIntent("ShowDetails")]
+        public async Task ShowDetails(IDialogContext context, LuisResult result)
+        {
+            var message = context.MakeMessage();
+
+            PersonDetailCard pCard = new PersonDetailCard();
+            var attachment = pCard.GetThumbnailCard();
+            message.Attachments = new List<Attachment>();
+            message.Attachments.Add(attachment);
+
+            await context.PostAsync(message);
+
+            context.Wait(this.MessageReceived);
+        }
+
         [LuisIntent("FindEmployees")]
         public async Task FindEmployees(IDialogContext context, LuisResult result)
         {
@@ -232,7 +247,14 @@ namespace FlexBot.Controllers
                 List<UserSkillsView> results = dbHelper.GetUserBySkillProficiencyAndLocation(skill, knowledgeLevel, location);
                 foreach (var user in results)
                 {
-                    await context.PostAsync($"{user.FirstName}, {user.Email}");
+                    var message = context.MakeMessage();
+
+                    PersonDetailCard pCard = new PersonDetailCard();
+                    var attachment = pCard.GetPeopleDetailsCard(user);
+                    message.Attachments = new List<Attachment>();
+                    message.Attachments.Add(attachment);
+
+                    await context.PostAsync(message);
                 }
 
                 if (results.Count == 0) {

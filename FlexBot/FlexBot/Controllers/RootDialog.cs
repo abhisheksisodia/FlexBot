@@ -190,6 +190,7 @@ namespace FlexBot.Controllers
                 if (entity.Type.Equals(EntityLocationName))
                 {
                     location = entity.Entity;
+                    await context.PostAsync($"Location changed to: {location}");
                     await SearchEmployees(context);
                     return;
                 }
@@ -209,6 +210,7 @@ namespace FlexBot.Controllers
                 if (entity.Type.Equals(EntitySkillName))
                 {
                     skill = entity.Entity;
+                    await context.PostAsync($"Skill changed to: {skill}");
                     await SearchEmployees(context);
                     return;
                 }
@@ -228,6 +230,7 @@ namespace FlexBot.Controllers
                 if (entity.Type.Equals(EntityLevelName))
                 {
                     knowledgeLevel = entity.Entity;
+                    await context.PostAsync($"Knowledge level changed to: {knowledgeLevel}");
                     await SearchEmployees(context);
                     return;
                 }

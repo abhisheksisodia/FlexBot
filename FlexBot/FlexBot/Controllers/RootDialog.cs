@@ -185,7 +185,7 @@ namespace FlexBot.Controllers
             skill = null;
             location = null;
             knowledgeLevel = null;
-            await context.PostAsync($"All right what do you want me to do now?");
+            await context.PostAsync($"Alright, what would you like to do now?");
             context.Done<object>(new object());
         }
 

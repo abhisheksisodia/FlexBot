@@ -239,11 +239,12 @@ namespace FlexBot.Controllers
 
         public async Task SearchEmployees(IDialogContext context)
         {
-            await context.PostAsync($"Okay, looking for people who know {skill} with knowledge level {knowledgeLevel} and located in {location}");
+            
             //perform search and give results
             DatabaseHelper dbHelper = new DatabaseHelper();
             if (skill != null && knowledgeLevel != null && location != null)
             {
+                await context.PostAsync($"Okay, looking for people who know {skill} with knowledge level {knowledgeLevel} and located in {location}");
                 List<UserSkillsView> results = dbHelper.GetUserBySkillProficiencyAndLocation(skill, knowledgeLevel, location);
                 foreach (var user in results)
                 {

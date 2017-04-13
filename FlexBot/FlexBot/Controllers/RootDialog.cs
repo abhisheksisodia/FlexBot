@@ -101,7 +101,6 @@ namespace FlexBot.Controllers
             }
             else if (skill != null && location != null && knowledgeLevel == null)
             {
-                //await SendSlackButtons(context);
                 ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
                 await proficiencySelectorCard.ShowOptions(context);
             }
@@ -128,7 +127,6 @@ namespace FlexBot.Controllers
                 }
                 else if (knowledgeLevel == null)
                 {
-                    //await SendSlackButtons(context);
                     ProficiencyLevelCard proficiencySelectorCard = new ProficiencyLevelCard();
                     await proficiencySelectorCard.ShowOptions(context);
                 }
@@ -148,26 +146,37 @@ namespace FlexBot.Controllers
 
         }
 
-        private static async Task SendSlackButtons(IDialogContext context)
+        [LuisIntent("UpdateEmployee")]
+        public async Task UpdateEmployee(IDialogContext context, LuisResult result)
         {
-            var slackAttachment = new SlackAttachment();
-            slackAttachment.Text = "Select knowledge level:";
-            slackAttachment.AttachmentType = "default";
-            slackAttachment.Actions = new List<SlackAction>();
-            var slackAction = new SlackAction();
-            slackAction.Type = "button";
-            slackAction.Name = "knowledgeLevel";
-            slackAction.Text = "Expert";
-            slackAction.Value = "Expert";
-            slackAttachment.Actions.Add(slackAction);
+            var entities = new List<EntityRecommendation>(result.Entities);
+            var dbHelper = new DatabaseHelper();
+            string firstName = "";
+            string lastName = "";
+            string skillToUpdate = "";
+            string levelToUpdate = "";
+            foreach (var entitity in entities)
+            {
+                if (entitity.Type == "Person::FirstName")
+                {
+                    firstName = entitity.Entity;
+                }
+                if (entitity.Type == "Person::LastName")
+                {
+                    lastName = entitity.Entity;
+                }
+                if (entitity.Type == EntitySkillName)
+                {
+                    skillToUpdate = entitity.Entity;
+                }
+                if (entitity.Type == EntityLevelName)
+                {
+                    levelToUpdate = entitity.Entity;
+                }
+            }
 
-            var reply = context.MakeMessage();
-            var slackChannelData = new SlackChannelData();
-            slackChannelData.Attachment = new List<SlackAttachment>();
-            slackChannelData.Attachment.Add(slackAttachment);
-            reply.ChannelData = slackChannelData;
-
-            await context.PostAsync(reply);
+            dbHelper.UpdateSkillForUser(firstName, lastName, skillToUpdate, levelToUpdate);
+            context.PostAsync($"Updated {firstName} {lastName}'s {skillToUpdate} skill to {levelToUpdate}");
         }
 
         [LuisIntent("ChangeRequest")]
@@ -242,7 +251,7 @@ namespace FlexBot.Controllers
 
         public async Task SearchEmployees(IDialogContext context)
         {
-            
+
             //perform search and give results
             DatabaseHelper dbHelper = new DatabaseHelper();
             if (skill != null && knowledgeLevel != null && location != null)
@@ -254,14 +263,16 @@ namespace FlexBot.Controllers
                     var message = context.MakeMessage();
 
                     PersonDetailCard pCard = new PersonDetailCard();
-                    var attachment = pCard.GetPeopleDetailsCard(user);
+                    var skills = dbHelper.GetSkillsForUser(user.FirstName, user.LastName);
+                    var attachment = pCard.GetPeopleDetailsCard(user, skills);
                     message.Attachments = new List<Attachment>();
                     message.Attachments.Add(attachment);
 
                     await context.PostAsync(message);
                 }
 
-                if (results.Count == 0) {
+                if (results.Count == 0)
+                {
                     await context.PostAsync("Sorry, I wasn't able to find what you were looking for.");
                 }
             }

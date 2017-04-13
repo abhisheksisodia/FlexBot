@@ -83,6 +83,10 @@ D:\c# projects\flex\FlexBot\FlexBot\FlexBot\bin\zh-hans\Microsoft.Bot.Builder.re
 D:\c# projects\flex\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.csprojResolveAssemblyReference.cache
 D:\c# projects\flex\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.dll
 D:\c# projects\flex\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.pdb
+C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.Autofac.dll
+C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.Autofac.xml
+C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\cs\Microsoft.Bot.Builder.resources.dll
+C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\de-dE\Microsoft.Bot.Builder.resources.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\FlexBot.dll.config
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\FlexBot.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\FlexBot.pdb
@@ -90,6 +94,7 @@ C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Autofac.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Chronic.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\EntityFramework.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\EntityFramework.SqlServer.dll
+C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.Autofac.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Connector.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
@@ -104,10 +109,10 @@ C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Autofac.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\EntityFramework.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\EntityFramework.SqlServer.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.xml
+C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.Autofac.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Connector.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.IdentityModel.Protocol.Extensions.pdb
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
-C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.Rest.ClientRuntime.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Microsoft.WindowsAzure.Configuration.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\Newtonsoft.Json.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\System.IdentityModel.Tokens.Jwt.pdb
@@ -116,6 +121,8 @@ C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\System.Net.Ht
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\System.Web.Http.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\System.Web.Http.WebHost.xml
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\ar\Microsoft.Bot.Builder.resources.dll
+C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\cs\Microsoft.Bot.Builder.resources.dll
+C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\de-dE\Microsoft.Bot.Builder.resources.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\en\Microsoft.Bot.Builder.resources.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\es\Microsoft.Bot.Builder.resources.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\fa\Microsoft.Bot.Builder.resources.dll
@@ -123,10 +130,5 @@ C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\fr\Microsoft.
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\ja\Microsoft.Bot.Builder.resources.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\ru\Microsoft.Bot.Builder.resources.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
-C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.csprojResolveAssemblyReference.cache
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.dll
 C:\Users\Redirection\sisoda3\Documents\FlexBot\FlexBot\FlexBot\obj\Debug\FlexBot.pdb
-C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.Autofac.dll
-C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\Microsoft.Bot.Builder.Autofac.xml
-C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\cs\Microsoft.Bot.Builder.resources.dll
-C:\Users\baptid3\Source\Repos\FlexBot\FlexBot\FlexBot\bin\de-dE\Microsoft.Bot.Builder.resources.dll

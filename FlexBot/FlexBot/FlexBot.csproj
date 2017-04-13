@@ -127,15 +127,18 @@
     <Compile Include="Cards\ProficiencyLevelCard.cs" />
     <Compile Include="Controllers\RootDialog.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="DbHelper\DatabaseHelper.cs" />
-    <Compile Include="DbHelper\UserSkillsView.cs" />
-    <Compile Include="DbHelper\UserSkillsViewBuilder.cs" />
+    <Compile Include="Model\DatabaseHelper.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserViewBuilder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LuisResponse.cs" />
+    <Compile Include="SlackModels\SlackAction.cs" />
+    <Compile Include="SlackModels\SlackAttachment.cs" />
+    <Compile Include="SlackModels\SlackField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Slack\SlackChannelData.cs" />
+    <Compile Include="SlackModels\SlackChannelData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

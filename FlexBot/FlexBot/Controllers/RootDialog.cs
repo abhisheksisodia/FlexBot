@@ -176,7 +176,7 @@ namespace FlexBot.Controllers
             }
 
             dbHelper.UpdateSkillForUser(firstName, lastName, skillToUpdate, levelToUpdate);
-            context.PostAsync($"Updated {firstName} {lastName}'s {skillToUpdate} skill to {levelToUpdate}");
+            await context.PostAsync($"Updated {firstName} {lastName}'s {skillToUpdate} skill to {levelToUpdate}");
         }
 
         [LuisIntent("ChangeRequest")]
@@ -257,7 +257,7 @@ namespace FlexBot.Controllers
             if (skill != null && knowledgeLevel != null && location != null)
             {
                 await context.PostAsync($"Okay, looking for people who know {skill} with knowledge level {knowledgeLevel} and located in {location}");
-                List<UserSkillsView> results = dbHelper.GetUserBySkillProficiencyAndLocation(skill, knowledgeLevel, location);
+                List<User> results = dbHelper.GetUserBySkillProficiencyAndLocation(skill, knowledgeLevel, location);
                 foreach (var user in results)
                 {
                     var message = context.MakeMessage();

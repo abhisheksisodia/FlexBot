@@ -14,7 +14,7 @@ namespace FlexBot.DbHelper
             connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["connectionStringName"].ConnectionString;
         }
 
-        public List<UserSkillsView> GetUserByLocationAndSkill(string location, string skills) {
+        public List<User> GetUserByLocationAndSkill(string location, string skills) {
             try
             {
                 SqlConnection connection = new SqlConnection(connectionString);
@@ -35,7 +35,7 @@ namespace FlexBot.DbHelper
 
                 command.CommandType = CommandType.StoredProcedure;
                 command.Connection = connection;
-                List<UserSkillsView> result = new List<UserSkillsView>();
+                List<User> result = new List<User>();
 
                 connection.Open();
                 dataReader = command.ExecuteReader();
@@ -58,7 +58,7 @@ namespace FlexBot.DbHelper
             return null;
         }
 
-        public List<UserSkillsView> GetUserByLocationAndProficiency(string location, string proficiency) {
+        public List<User> GetUserByLocationAndProficiency(string location, string proficiency) {
             try
             {
                 SqlConnection connection = new SqlConnection(connectionString);
@@ -78,7 +78,7 @@ namespace FlexBot.DbHelper
 
                 command.CommandType = CommandType.StoredProcedure;
                 command.Connection = connection;
-                List<UserSkillsView> result = new List<UserSkillsView>();
+                List<User> result = new List<User>();
 
                 connection.Open();
                 dataReader = command.ExecuteReader();
@@ -201,7 +201,7 @@ namespace FlexBot.DbHelper
             return -4;
         }
 
-        public List<UserSkillsView> GetUserBySkillAndProficiency(string skill, string proficiency)
+        public List<User> GetUserBySkillAndProficiency(string skill, string proficiency)
         {
             try
             {
@@ -222,7 +222,7 @@ namespace FlexBot.DbHelper
 
                 command.CommandType = CommandType.StoredProcedure;
                 command.Connection = connection;
-                List<UserSkillsView> result = new List<UserSkillsView>();
+                List<User> result = new List<User>();
 
                 connection.Open();
                 dataReader = command.ExecuteReader();
@@ -246,7 +246,7 @@ namespace FlexBot.DbHelper
             return null;
         }
 
-        public List<UserSkillsView> GetAllUsers()
+        public List<User> GetAllUsers()
         {
             try
             {
@@ -258,7 +258,7 @@ namespace FlexBot.DbHelper
 
                 command.CommandType = CommandType.StoredProcedure;
                 command.Connection = connection;
-                List<UserSkillsView> result = new List<UserSkillsView>();
+                List<User> result = new List<User>();
 
                 connection.Open();
                 dataReader = command.ExecuteReader();
@@ -280,7 +280,7 @@ namespace FlexBot.DbHelper
             return null;
         }
 
-        public List<UserSkillsView> GetUserBySkillProficiencyAndLocation(string skill, string proficiency, string location)
+        public List<User> GetUserBySkillProficiencyAndLocation(string skill, string proficiency, string location)
         {
             try
             {
@@ -307,7 +307,7 @@ namespace FlexBot.DbHelper
 
                 command.CommandType = CommandType.StoredProcedure;
                 command.Connection = connection;
-                List<UserSkillsView> result = new List<UserSkillsView>();
+                List<User> result = new List<User>();
 
                 connection.Open();
                 dataReader = command.ExecuteReader();
@@ -331,8 +331,8 @@ namespace FlexBot.DbHelper
         }
 
 
-        private UserSkillsView readUserSkillsRow(IDataRecord rowData) {
-            UserSkillsViewBuilder builder = new UserSkillsViewBuilder();
+        private User readUserSkillsRow(IDataRecord rowData) {
+            UserBuilder builder = new UserBuilder();
 
             builder.Id(rowData.GetInt32(0));
             builder.FirstName(rowData.GetString(1));

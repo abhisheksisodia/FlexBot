@@ -23,7 +23,7 @@ namespace FlexBot.Cards
             return heroCard.ToAttachment();
         }
 
-        public Attachment GetPeopleDetailsCard(UserSkillsView user, List<string> skills)
+        public Attachment GetPeopleDetailsCard(User user, List<string> skills)
         {
             var heroCard = new ThumbnailCard
             {

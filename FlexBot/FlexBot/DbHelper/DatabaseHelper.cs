@@ -146,6 +146,61 @@ namespace FlexBot.DbHelper
             return null;
         }
 
+        public int UpdateSkillForUser(string firstName, string lastName, string skillName, string skillLevel)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                SqlCommand command = new SqlCommand();
+                SqlDataReader dataReader;
+
+                command.CommandText = "dbo.updateUserSkillByName";
+                SqlParameter firstNameParam = new SqlParameter();
+                firstNameParam.ParameterName = "@firstName";
+                firstNameParam.Value = firstName;
+                command.Parameters.Add(firstNameParam);
+
+                SqlParameter lastNameParam = new SqlParameter();
+                lastNameParam.ParameterName = "@lastName";
+                lastNameParam.Value = lastName;
+                command.Parameters.Add(lastNameParam);
+
+                SqlParameter skillNameParam = new SqlParameter();
+                skillNameParam.ParameterName = "@skillName";
+                skillNameParam.Value = skillName;
+                command.Parameters.Add(skillNameParam);
+
+                SqlParameter knowledgeLevelParam = new SqlParameter();
+                knowledgeLevelParam.ParameterName = "@knowledgeLevel";
+                knowledgeLevelParam.Value = skillLevel;
+                command.Parameters.Add(knowledgeLevelParam);
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Connection = connection;
+                int result;
+
+                connection.Open();
+                dataReader = command.ExecuteReader();
+
+                // Parse dateReader
+               
+                
+                    result = (dataReader.GetInt32(0));
+               
+
+                dataReader.Close();
+                connection.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                String message = ex.Message;
+            }
+
+            return -4;
+        }
+
         public List<UserSkillsView> GetUserBySkillAndProficiency(string skill, string proficiency)
         {
             try

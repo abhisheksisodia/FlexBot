@@ -57,6 +57,21 @@ namespace FlexBot.Controllers
             context.Wait(this.MessageReceived);
         }
 
+        [LuisIntent("ShowDetails")]
+        public async Task ShowDetails(IDialogContext context, LuisResult result)
+        {
+            var message = context.MakeMessage();
+
+            PersonDetailCard pCard = new PersonDetailCard();
+            var attachment = pCard.GetThumbnailCard();
+            message.Attachments = new List<Attachment>();
+            message.Attachments.Add(attachment);
+
+            await context.PostAsync(message);
+
+            context.Wait(this.MessageReceived);
+        }
+
         [LuisIntent("FindEmployees")]
         public async Task FindEmployees(IDialogContext context, LuisResult result)
         {
@@ -175,6 +190,7 @@ namespace FlexBot.Controllers
                 if (entity.Type.Equals(EntityLocationName))
                 {
                     location = entity.Entity;
+                    await context.PostAsync($"Location changed to: {location}");
                     await SearchEmployees(context);
                     return;
                 }
@@ -194,6 +210,7 @@ namespace FlexBot.Controllers
                 if (entity.Type.Equals(EntitySkillName))
                 {
                     skill = entity.Entity;
+                    await context.PostAsync($"Skill changed to: {skill}");
                     await SearchEmployees(context);
                     return;
                 }
@@ -213,6 +230,7 @@ namespace FlexBot.Controllers
                 if (entity.Type.Equals(EntityLevelName))
                 {
                     knowledgeLevel = entity.Entity;
+                    await context.PostAsync($"Knowledge level changed to: {knowledgeLevel}");
                     await SearchEmployees(context);
                     return;
                 }
@@ -224,15 +242,23 @@ namespace FlexBot.Controllers
 
         public async Task SearchEmployees(IDialogContext context)
         {
-            await context.PostAsync($"Okay, looking for people who know {skill} with knowledge level {knowledgeLevel} and located in {location}");
+            
             //perform search and give results
             DatabaseHelper dbHelper = new DatabaseHelper();
             if (skill != null && knowledgeLevel != null && location != null)
             {
+                await context.PostAsync($"Okay, looking for people who know {skill} with knowledge level {knowledgeLevel} and located in {location}");
                 List<UserSkillsView> results = dbHelper.GetUserBySkillProficiencyAndLocation(skill, knowledgeLevel, location);
                 foreach (var user in results)
                 {
-                    await context.PostAsync($"{user.FirstName}, {user.Email}");
+                    var message = context.MakeMessage();
+
+                    PersonDetailCard pCard = new PersonDetailCard();
+                    var attachment = pCard.GetPeopleDetailsCard(user);
+                    message.Attachments = new List<Attachment>();
+                    message.Attachments.Add(attachment);
+
+                    await context.PostAsync(message);
                 }
 
                 if (results.Count == 0) {

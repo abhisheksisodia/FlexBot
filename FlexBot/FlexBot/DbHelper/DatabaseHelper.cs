@@ -43,7 +43,7 @@ namespace FlexBot.DbHelper
                 // Parse dateReader
                 while (dataReader.Read())
                 {
-                    result.Add(readRow(dataReader));
+                    result.Add(readUserSkillsRow(dataReader));
                 }
 
                 dataReader.Close();
@@ -86,7 +86,7 @@ namespace FlexBot.DbHelper
                 // Parse dateReader
                 while (dataReader.Read())
                 {
-                    result.Add(readRow(dataReader));
+                    result.Add(readUserSkillsRow(dataReader));
                 }
 
                 dataReader.Close();
@@ -95,6 +95,51 @@ namespace FlexBot.DbHelper
                 return result;
             }
             catch (Exception ex) {
+                String message = ex.Message;
+            }
+
+            return null;
+        }
+
+        public List<string> GetSkillsForUser(string firstName, string lastName)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                SqlCommand command = new SqlCommand();
+                SqlDataReader dataReader;
+
+                command.CommandText = "dbo.GetSkillsForUserByName";
+                SqlParameter firstNameParam = new SqlParameter();
+                firstNameParam.ParameterName = "@firstName";
+                firstNameParam.Value = firstName;
+                command.Parameters.Add(firstNameParam);
+
+                SqlParameter lastNameParam = new SqlParameter();
+                lastNameParam.ParameterName = "@lastName";
+                lastNameParam.Value = lastName;
+                command.Parameters.Add(lastNameParam);
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Connection = connection;
+                List<string> result = new List<string>();
+
+                connection.Open();
+                dataReader = command.ExecuteReader();
+
+                // Parse dateReader
+                while (dataReader.Read())
+                {
+                    result.Add(dataReader.GetString(0));
+                }
+
+                dataReader.Close();
+                connection.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
                 String message = ex.Message;
             }
 
@@ -130,7 +175,7 @@ namespace FlexBot.DbHelper
                 // Parse dateReader
                 while (dataReader.Read())
                 {
-                    result.Add(readRow(dataReader));
+                    result.Add(readUserSkillsRow(dataReader));
                 }
 
                 dataReader.Close();
@@ -165,7 +210,7 @@ namespace FlexBot.DbHelper
 
                 // Parse dateReader
                 while (dataReader.Read()) {
-                    result.Add(readRow(dataReader));
+                    result.Add(readUserSkillsRow(dataReader));
                 }
 
                 dataReader.Close();
@@ -215,7 +260,7 @@ namespace FlexBot.DbHelper
                 // Parse dateReader
                 while (dataReader.Read())
                 {
-                    result.Add(readRow(dataReader));
+                    result.Add(readUserSkillsRow(dataReader));
                 }
 
                 dataReader.Close();
@@ -231,7 +276,7 @@ namespace FlexBot.DbHelper
         }
 
 
-        private UserSkillsView readRow(IDataRecord rowData) {
+        private UserSkillsView readUserSkillsRow(IDataRecord rowData) {
             UserSkillsViewBuilder builder = new UserSkillsViewBuilder();
 
             builder.Id(rowData.GetInt32(0));

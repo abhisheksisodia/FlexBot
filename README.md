@@ -2,7 +2,7 @@
 
 Skylnet is a chatbot built using the microsoft bot framework. It helps to manage employee skills in a friendly and efficient way. Users can start a chat with the bot using slack or skype, find employees or update skills.
 
-# Features!
+# Features
 
   - Find employees based on:
     - Particular technology skill (Unity, C#, Java etc.)
@@ -24,3 +24,7 @@ Skylnet is a chatbot built using the microsoft bot framework. It helps to manage
 ### Find Employees: Specify one criteria at a time
 
 ![Output sample](https://raw.githubusercontent.com/abhisheksisodia/FlexBot/master/screenshots/findEmployees2.PNG)
+
+# Architecture
+
+![Output sample](https://raw.githubusercontent.com/abhisheksisodia/FlexBot/master/images/Bot-Architecture.png)

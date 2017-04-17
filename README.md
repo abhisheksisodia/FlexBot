@@ -17,6 +17,10 @@ Skylnet is a chatbot built using the microsoft bot framework. It helps to manage
 
 # Sample Dialogs
 
-### Find Employees
+### Find Employees: Specify all three criteria
 
-[![Output sample](https://raw.githubusercontent.com/abhisheksisodia/FlexBot/master/screenshots/findEmployees1.PNG)]
+![Output sample](https://raw.githubusercontent.com/abhisheksisodia/FlexBot/master/screenshots/findEmployees1.PNG)
+
+### Find Employees: Specify one criteria at a time
+
+![Output sample](https://raw.githubusercontent.com/abhisheksisodia/FlexBot/master/screenshots/findEmployees2.PNG)
